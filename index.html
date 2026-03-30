@@ -53,7 +53,7 @@
             
             {% for file in reports reversed %}
             <li class="report-item">
-                <a href="{{ file.path | relative_url }}" class="report-link" target="_blank">{{ file.name }}</a>
+                <a href="{{ file.path | relative_url }}" class="report-link" target="_blank">{{ file.name | remove: ".pdf" }}</a>
             </li>
             {% endfor %}
 
