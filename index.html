@@ -1,3 +1,5 @@
+---
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,7 +37,6 @@
             font-weight: bold; 
         }
         a.report-link:hover { text-decoration: underline; }
-        .date { font-size: 0.9em; color: #7f8c8d; margin-bottom: 10px; display: block; }
     </style>
 </head>
 <body>
@@ -48,13 +49,13 @@
         <h2>Published Reports</h2>
         <ul class="report-list">
             
-            <!-- Copy and paste this block for each new report -->
+            {% assign reports = site.static_files | where_exp: "item", "item.path contains '/reports/'" | where_exp: "item", "item.extname == '.pdf'" %}
+            
+            {% for file in reports reversed %}
             <li class="report-item">
-                <a href="reports/investigation_01.pdf" class="report-link" target="_blank">Investigation 01: [Insert Report Title] (PDF)</a>
-                <span class="date">Published: [Insert Date]</span>
-                <p>A brief summary of the findings and the individuals detailed in this document.</p>
+                <a href="{{ site.baseurl }}{{ file.path }}" class="report-link" target="_blank">{{ file.name }}</a>
             </li>
-            <!-- End of report block -->
+            {% endfor %}
 
         </ul>
     </main>
